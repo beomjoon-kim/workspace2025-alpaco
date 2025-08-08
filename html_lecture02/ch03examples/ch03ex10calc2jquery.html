@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- jQuery CDN -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        $(function() {
+            // var num1Input = $('#num1')[0];
+            // console.log(num1Input);
+
+            // var num1 = $('#num1').val();
+            // console.log(num1);
+
+            $('#okBtn').click(function(e) {
+                var result = Number($('#num1').val()) + Number($('#num2').val());
+                $('#resultBox').html(result);
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="text" id="num1" value="20">
+    <select id="operator">
+        <option value="+">더하기</option>
+        <option value="-">빼기</option>
+        <option value="*">곱하기</option>
+        <option value="/">나누기</option>
+    </select>
+    <input type="text" id="num2" value="3">
+    <button id="okBtn">확인</button>
+    <hr>
+    <div id="resultBox">결과</div>
+</body>
+</html>

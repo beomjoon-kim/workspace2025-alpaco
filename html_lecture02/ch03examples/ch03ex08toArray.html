@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // HTMLCollection을 Array로 변경하기
+        // HTMLCollection에 비해 Array에 더 많은 함수가 있다.
+        window.onload = function() {
+            // List형식이긴 하지만 Array타입이 아닌 HTMLCollection 타입이다.
+            // HTMLCollection타입에는 활용 함수가 3개만 포함 되었다. 
+            var specialElements = document.getElementsByClassName('special');
+            //console.dir(specialElements);
+
+            // ES5 이전에 사용 방식 (예전 자바스크립트 방식)
+            var array = Array.prototype.slice.call(specialElements);
+            
+            // ES6 방식 (ECMA script 2015 이후에 나온 JS 최신 버전)
+            // Array.from() 함수의 역할은 toArray 함수이다. 
+            var array2 = Array.from(specialElements);
+
+            // 구조분해 할당 방식 (스프리드연산자)
+            var array3 = [...specialElements];
+            array3.forEach(function (liElement, index, array) {
+                //console.log(liElement.firstChild);
+                liElement.style.color = "red";
+                liElement.firstChild.style.color = "red";
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <h1>DOM 연습</h1>
+    <div>
+        <ul id="topmenu">
+            <li><a href="a">AA</a></li>
+            <li class="special"><a href="b">BB</a></li>
+            <li><a href="c">CC</a></li>
+            <li class="special"><a href="d">DD</a></li>
+            <li class="special"><a href="e">EE</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h2>오신것을 환영 한니다!</h2>
+    </div>
+
+    <!-- 이심전심 - '아'하면 '어'하고 알아 듣는것 (라포) -->
+</body>
+</html>

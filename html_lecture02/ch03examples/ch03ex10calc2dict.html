@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var num1Input = null;
+        var num2Input = null;
+        var operator = null;
+        var okBtn = null;
+        var resultDiv = null;
+
+        var calcObj = {
+            name: 'MyCalc',
+            result: 0,
+            "+": function(num1, num2) {
+                this.result = num1 + num2;
+                return this.result;
+            },
+            "-": function(num1, num2)  {
+                this.result = (num1<num2) ? num2 - num1 : num1 - num2;
+                return this.result;
+            },
+            "*": function(num1, num2)  {
+                this.result = num1 * num2;
+                return this.result;
+            }, 
+            "/": function(num1, num2)  {
+                this.num2Input = Math.floor(num1 / num2);
+                return this.result;
+            }
+        }
+
+        window.onload = function() {
+            num1Input = document.querySelector('#num1');
+            num2Input = document.querySelector('#num2');
+            operator = document.querySelector('#operator');
+            okBtn = document.querySelector('#okBtn');
+            resultDiv = document.querySelector('#resultBox');
+
+            okBtn.onclick = function(e) {
+                var num1 = Number(num1Input.value);
+                var num2 = Number(num2Input.value);
+
+                var result = calcObj[operator.value](num1, num2);
+
+                console.log(num1, operator.value,  num2, '=', result);
+                resultDiv.innerText = `결과: ${num1} ${operator.value} ${num2} = ${result}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="num1" value="20">
+    <select id="operator">
+        <option value="+">더하기</option>
+        <option value="-">빼기</option>
+        <option value="*">곱하기</option>
+        <option value="/">나누기</option>
+    </select>
+    <input type="text" id="num2" value="3">
+    <button id="okBtn">확인</button>
+    <hr>
+    <div id="resultBox">결과</div>
+</body>
+</html>

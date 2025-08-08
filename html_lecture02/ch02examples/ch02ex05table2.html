@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table.tbl01 {
+            border: 1px solid gray;
+            width: 300px;
+            height: 500px;
+            border-collapse: collapse;
+            background-color: gray;
+        }
+        table.tbl01 td {
+            border: 1px solid black;
+            background-color: yellow;
+        }
+        .tbl01 col {
+            width: 33%;
+        }
+        .tbl01 tr:nth-child(1) td {
+            background-color: orange;
+            height: 100px;
+        }
+        .tbl01 tr:nth-child(2) td:nth-child(3) {
+            background-color: red;
+        }
+    </style>
+</head>
+<body> 
+    <h1>표 꾸미기</h1>
+    <table class="tbl01">
+        <colgroup><col><col><col></colgroup>
+        <tr>
+            <td colspan="2">2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td rowspan="2"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1[name=a] span, h1[name=b] span {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title-a" class="titlecls" name="a"><span>길동이</span>의 홈페이지</h1>
+    <h1 id="title-b" class="titlecls" name="b"><span>길동이</span>의 홈페이지</h1>
+    <h2>덥다</h2>
+    <script>
+        /*
+        여러 줄 
+        주석입니다.
+        */
+        // console.dir(document);
+        document.bgColor = "yellow";
+        document.title = "Hello world";
+
+        // select num, name, id from table1 whre num = 4;
+        
+        // var, let, const로 선언
+        // 변수 선언 시 var, 함수 선언 시 function 키워드 사용.
+        // var 대신 let 사용 가능.
+        // let, const, class 및 화살표 함수
+
+        var h1tag = document.getElementById("title-a");
+        // title-a라는 id를 가진 태그의 DOM 객체를 h1tag에 참조시킨다.
+        // DOM으로 바뀌지 않으면 h1태그는 문서상의 글자일 뿐이다. 
+
+        console.dir(h1tag.parentElement);
+
+        var spanTag = h1tag.getElementsByTagName("span")[0];
+        console.dir(spanTag.parentElement.parentElement.parentElement)
+        // 스스로 JS이용해서 h1태그의 내용 변경.
+
+        // 트래버싱으로 요소 검색
+        console.dir(spanTag.parentElement.parentElement.previousElementSibling);
+        var headTag = spanTag.parentElement.parentElement.previousElementSibling;
+        headTag.getElementsByTagName('title')[0].innerHTML = "aaaaa";
+
+        //console.dir(window);
+        // setter 역할
+        h1tag.innerHTML = "Beomjoon's <span>Lab</span>";
+        console.log(h1tag.innerHTML);
+        //h1tag.innerText = "Beomjoon's Lab2";
+        //console.log(h1tag.innerHTML);
+        //h1tag.textContent = "Beomjoon's Lab3";
+        //h1tag.outerHTML = "<h2>Beomjoon's Lab3</h2>";
+        //h1tag.outerText = "<h1>Beomjoon's Lab3</h1>";
+
+        // getter 역할
+        var a = h1tag.innerHTML;
+        //console.log(a);
+        var b = h1tag.innerText;
+        console.log(b);
+        var c = h1tag.textContent;
+        console.log(c);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Internal 스타일시트의 우선순위를 위해 위에서 링크한다 -->
+    <link rel="stylesheet" href="ch03ex01form.css">
+    <style>
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        input[type=submit] {
+            width: 100%;
+            padding: 12px 20px;
+            background-color: aqua;
+            border: 1px solid navy;
+            border-radius: 6px;
+        }
+        input[name=input1] {
+            border: 1px solid red;
+            border-radius: 7px;
+        }
+        input[name=input1]:focus {
+            border-radius: 0px;
+            background-color: pink;
+        }
+        input[name=input2] {
+            border: none;
+            border-bottom: 4px solid blue;
+            background-color: skyblue;
+        }
+        input[name=input3] {
+            width: 400px;
+            /* width가 변경 될때 애니메이션 효과 */
+            transition: width 1s cubic-bezier(.36,.31,.69,1.27);
+        }
+        input[name=input3]:focus {
+            width: 100%;
+        }
+        h1 {
+            color: green;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1 style="color: red;">길동이의 홈페이지</h1>
+    <h1>Welcome</h1>
+    <form action="">
+        Input1:<br> <input type="text" name="input1"><br>
+        Input2:<br> <input type="text" name="input2"><br>
+        Input3:<br> <input type="text" name="input3"><br>
+        <input type="submit" value="SEND">
+    </form>
+</body>
+</html>

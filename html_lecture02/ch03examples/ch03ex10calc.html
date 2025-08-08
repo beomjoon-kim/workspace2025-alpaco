@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 과제 1)
+        // 초등학교 저학년 계산기
+        // 음수X, 소수점 결과X
+        // num1이 num2보다 작다면 num1과 num2를 치환.
+        // 음수가 안나오도록 계산
+        // --- 힌트)
+        // getElementById()
+        // querySelect() : CSS의 선택기 사용과 동일 #, ., [], 태그이름으로 선택 가능.
+        // input태그의 값을 가져오는 것은 inputElement.value
+        // div태그에 내용을 변경은 innerHTML또는 innerText 속성으로 한다.
+
+        // 전역 변수 선언 (페이지 내에서 어디서든 접근 가능)
+        var num1Input = null;
+        var num2Input = null;
+        var operator = null;
+        var okBtn = null;
+        var resultDiv = null;
+
+        window.onload = function() {
+            // querySelector(); CSS 선택기를 인자로 사용 (#, ., [], 태그명)
+            // 후반에 새로 등장한 함수.
+            num1Input = document.querySelector('#num1');
+            num2Input = document.querySelector('#num2');
+            operator = document.querySelector('#operator');
+            okBtn = document.querySelector('#okBtn');
+            resultDiv = document.querySelector('#resultBox');
+
+            //console.log(num1Input, num2Input, operator, okBtn, resultDiv);
+            // 1. 이벤트 핸들러 만들기
+            // 2. input및 select값 읽어오기
+            // 3. 연산
+            // 4. 화면에 표시
+
+            okBtn.onclick = function(e) {
+                // console.log('okBtn clcik!')
+                // Numeric 데이터 - 숫자모양의 문자열 ex) "400", '3.14'
+                // string 타입을 number타입으로 변환: Number(), parseInt()
+                var num1 = Number(num1Input.value);
+                var num2 = Number(num2Input.value);
+
+                //console.log(typeof(num1))
+                //console.log( num1, num2, num1 + num2);
+                // 값을 대입 할 변수 초기화
+                var result = 0;
+                if(operator.value == "+") {
+                    result = num1 + num2;
+                } else if(operator.value == "-") {
+                    result = (num1<num2) ? num2 - num1 : num1 - num2;
+                } else if(operator.value == "*") {
+                    result = num1 * num2;
+                } else if(operator.value == "/") {
+                    result = Math.floor(num1 / num2);
+                }
+
+                //console.log(num1, operator.value,  num2, '=', result);
+                resultDiv.innerText = `결과: ${num1} ${operator.value} ${num2} = ${result}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="num1" value="20">
+    <select id="operator">
+        <option value="+">더하기</option>
+        <option value="-">빼기</option>
+        <option value="*">곱하기</option>
+        <option value="/">나누기</option>
+    </select>
+    <input type="text" id="num2" value="3">
+    <button id="okBtn">확인</button>
+    <hr>
+    <div id="resultBox">결과</div>
+</body>
+</html>

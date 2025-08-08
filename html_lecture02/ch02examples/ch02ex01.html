@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>BJ-AI-LAB</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+  <style>
+    /* 
+    CSS 선택기: 태그명, ID명, 클래스명, 속성등으로 요소를 선택 가능 
+    - 태그 선택: 태그이름 직접 사용.
+    - id 요소 선택: #아이디값
+    - class 요소 선택: .클래스값
+    - 속성 요소 선택: [속성=값]이용
+    
+    선택기 {
+        속성: 값;
+        속성: 값;
+        ...
+    }
+
+
+    인라인 > 인터널 > 익스터널
+    복합적 선택 > 단순 선택
+
+    div#id
+    div.class
+    */
+    h3 {
+        color: #ff0033;
+        color: yellow;
+        background-color: green;
+    }
+
+    header > ul {
+        border: 1px dashed red;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h3>디지털 대 전환시대의 아이콘</h3>
+    <h1 style="color:brown;">범준샘 AI 연구소</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <div>
+        <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+        </nav>
+    </div>
+  </header>
+  <main>
+    <section>
+      <h2>About Me</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </section>
+    <section>
+      <h2>Services</h2>
+      <ul>
+        <li>Web Design</li>
+        <li>Front-end Development</li>
+        <li>Graphic Design</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 My Website. All rights reserved.</p>
+  </footer>
+</body>
+</html>
