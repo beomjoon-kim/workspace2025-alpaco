@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>객체 활용</h1>
+    <ul id="menu">
+        <li>오징어</li>
+        <li>꼴뚜기</li>
+        <li>대구</li>
+        <li>명태</li>
+        <li>거북이</li>
+    </ul>
+
+    <script>
+        // Array 타입
+        let colors =  ['red','green','blue','orange','yellow'];
+
+        let ulTag = document.getElementById('menu');
+        // 찾는 범주가 ulTag 내부로 한정된다.
+        let liCollection = ulTag.getElementsByTagName('li');
+        // HTMLCollection 타입: item, length, namedItem ...
+        console.dir(liCollection);
+
+        let lis = ulTag.querySelectorAll('li');
+        // NodeList 타입: forEach, entries, keys, values ...
+        console.dir(lis);
+
+        // Array 타입: 자바스크립트 배열에서 사용하는 거의 대부분 기능 사용 가능.
+        console.dir(colors);
+
+        // HTMLCollection 타입을 Array 타입으로 변환 가능.
+        // 스프리드 연산자(...)를 사용해서 구조분해 할당 하면 편리하다. 
+        console.dir([...liCollection])
+
+    </script>
+</body>
+</html>

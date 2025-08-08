@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+// ES5 이전방식
+// class, extends 키워드는 ES6이후에 나옴.
+function Animal(name) {
+    this.name = name;
+
+    // 생성자 내부에 직접 메서드를 선언하면 객체마다 메서드 소스코드가 복제된다.
+    // 비효율적이다.
+    // this.speak = function() {
+    //     console.log(`${this.name}이 조용히 있다.`);
+    // }
+}
+// 생성자의 prototype 객체에 메서드를 정의하면 
+// 객체마다 복제 되지 않는다.
+// 자바스크립트는 캡슐화 (X), 필요한 속성을 즉석에서 추가 가능.
+Animal.prototype.speak = function() {
+    console.log(`${this.name}이 조용히 있다.`);
+}
+
+// const ani1 = new Animal("동물");
+// ani1.speak();
+// console.dir(ani1);
+
+// 상속 할때는 protype 객체를 이용한다.
+function Cat(name) {
+    this.name = name;
+    this.sound = "야옹";
+}
+Cat.prototype = new Animal();
+Cat.prototype.speak = function() {
+    console.log(`${this.name}가 ${this.sound}하고 운다`)
+}
+
+const cat = new Cat("나비");
+cat.speak();
+
+</script>
+</body>
+</html>

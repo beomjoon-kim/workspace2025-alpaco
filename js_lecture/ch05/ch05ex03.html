@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animation Example</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+
+  <script>
+    const box = document.querySelector('.box');
+    console.dir(box);
+
+    // 애니메이션 효과 추가
+    box.animate(
+      [
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.5)' },
+        { transform: 'scale(1)' },
+      ],
+      {
+        duration: 1000,
+        iterations: Infinity,
+      }
+    );
+  </script>
+</body>
+</html>
+

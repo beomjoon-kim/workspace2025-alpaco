@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 200px;
+            height: 200px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>짝 맞추기 게임</h1>
+    <table class="minipuzzle">
+        <tr>
+            <td data-ch="A">.</td>
+            <td data-ch="B">.</td>
+        </tr>
+        <tr>
+            <td data-ch="B">.</td>
+            <td data-ch="A">.</td>
+        </tr>
+    </table>
+
+    <script>
+        var firstCell = null;
+        let tdList = document.querySelectorAll(".minipuzzle td");
+        tdList.forEach(function(td, i) {
+            //td.addEventListener('click', function (event) {
+            td.onclick = function(event) {
+                console.log(event.target.dataset['ch']);
+                // 첫번째 클릭인지? 두번째 클릭인지 구분.
+                // 첫번째 클릭에는 td의 ch속성값을 임시저장
+                // 두번째 클릭에서 첫번째 클릭의 ch와 비교한다.
+                if(firstCell === null) {
+                    console.log('첫번째 td셀 클릭!');
+                    firstCell = event.target;
+                    firstCell.innerHTML = event.target.dataset['ch'];
+                } else if(firstCell == event.target) {
+                    alert('첫번째 셀과 동일한 셀을 다시 클릭 했습니다!')
+                } else {
+                    console.log('두번째 td셀 클릭!');
+                    // 비교 후 firstCell 초기화
+                    event.target.innerHTML = event.target.dataset['ch'];
+                    
+                    // 강제로 시간차 두기
+                    setTimeout(function() {
+                        // 첫번째 클릭 td의 값과 두번째 클릭 td의 값을 비교해서 같으면 유지 다르면 초기화.
+                        if(firstCell.dataset['ch'] == event.target.dataset['ch']) {
+                            // 정답이면 해당 셀의 이벤트 핸들러 제거.
+                            firstCell.onclick = null;
+                            event.target.onclick = null;
+                        } else {
+                            alert('오답!');
+                            firstCell.innerHTML = "";
+                            event.target.innerHTML = "";
+                        }
+                        firstCell = null;
+                    }, 50);
+                }
+            };
+        });
+    </script>
+</body>
+</html>

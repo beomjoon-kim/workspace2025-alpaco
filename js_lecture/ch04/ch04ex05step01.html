@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.box {
+            border: 0px solid navy;
+            width: 100px;
+        }
+        div.cell {
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+            border: 1px solid orange;
+            font-size: 24pt;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>슬롯머신(햄버거하우스) 게임</h1>
+    <div class="game"></div>
+
+    <script>
+        let game = document.querySelector("div.game");
+        let box = document.createElement("div");
+        box.className = 'box';
+        for(var i=0; i<10; i++) {
+            let cell = document.createElement("div");
+            cell.innerHTML = i+1;
+            cell.className = 'cell';
+            box.appendChild(cell);
+        }
+        game.appendChild(box);
+
+        // 내부의 cell들이 위로 이동하도록 한다. (box가 위로 애니메이션)
+        let y = 0;
+        let ref = setInterval(function() {
+            
+        }, Math.floor(1000/60));
+    </script>
+</body>
+</html>

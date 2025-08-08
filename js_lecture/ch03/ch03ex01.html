@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(`${this.name}이(가) 조용히 있습니다.`);
+  }
+}
+
+//const a = new Animal("동물");
+//a.speak();  // 출력: 동물이(가) 조용히 있습니다.
+class Dog extends Animal {
+    // 자바스크립트는 contructor() 메서드가 상속 된다.
+    // constructor(name) {
+    //     super(name);
+    // }
+
+    // 부모 생성자의 매개변수다 많은 생성자 매개변수를 자식 갖는다면 임의 호출 해야한다. 
+    constructor(name, age) {
+        super(name);
+        this.age = age;
+    }
+
+    speak() {
+        console.log(`${this.age}살의 ${this.name}이(가) 멍멍! 짖습니다.`);
+    }
+}
+class Cat extends Animal {
+  speak() {
+    console.log(`${this.name}이(가) 야옹~ 하고 웁니다.`);
+  }
+}
+
+const dog1 = new Dog("바둑이", 25);
+const cat1 = new Cat("나비");
+
+dog1.speak();  // 바둑이이(가) 멍멍! 짖습니다.
+cat1.speak();  // 나비이(가) 야옹~ 하고 웁니다.
+
+</script>
+</body>
+</html>

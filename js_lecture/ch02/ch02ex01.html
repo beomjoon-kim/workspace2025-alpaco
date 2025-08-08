@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>계산기</h1>
+    <form action="" id="clacForm">
+        <input type="text" name="num1" value="10">
+        <input type="text" name="num2" value="5">
+        <input type="text" name="op" value="+">
+        <input type="submit" value="결과">
+    </form>
+    <div id="resultBox"></div>
+    
+<script>
+    let num1 = 0;
+    let num2 = 0;
+    let op = "+";
+    let result =0 ;
+    
+    function calc() {
+        switch(op) {
+            case '+': result = num1 + num2; break;
+            case '-': result = num1 - num2; break;
+            case '*': result = num1 * num2; break;
+            case '/': result = num1 / num2; break;
+            default: result = "지원하지 않는 연산자입니다."
+        }
+    }
+    
+    if(confirm("브라우저 계산기 사용(y/n)")) {
+        let form = document.getElementById('clacForm');
+        form.onsubmit = function(event) {
+            event.preventDefault();
+            num1 = Number(form.num1.value);
+            num2 = Number(form.num2.value);
+            op = form.op.value;
+            calc();
+            document.getElementById("resultBox").innerHTML = "결과: " + result;
+        }
+    } else {
+        num1 = Number(prompt("첫번째 숫자 입력: "));
+        num2 = Number(prompt("두번째 숫자 입력: "));
+        op = prompt("연산자 입력 (+, -, *, /): ")
+        calc(); // calc 함수는 재활용
+        alert("결과:"  + result);
+    }
+</script>
+
+</body>
+</html>

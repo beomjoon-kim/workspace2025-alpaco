@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>객체 활용</h1>
+    <ul id="menu">
+        <li>오징어</li>
+        <li>꼴뚜기</li>
+        <li>대구</li>
+        <li>명태</li>
+        <li>거북이</li>
+    </ul>
+
+    <script>
+        let colors =  ['red','green','blue','orange','yellow'];
+        let ulTag = document.getElementById('menu');
+        let lis = ulTag.querySelectorAll('li');
+
+        lis.forEach(function(liEl, i) {
+            // console.log(liEl, i);
+            liEl.onclick = function() {
+                // console.log(i);
+                document.body.bgColor = colors[i];
+            }
+        });
+    </script>
+</body>
+</html>

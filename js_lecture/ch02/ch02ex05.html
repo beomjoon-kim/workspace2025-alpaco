@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여러 요소에 이벤트 핸들러 일괄 등록</title>
+    <style>
+    .color-btn {
+      margin: 5px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+    </style>
+
+    <script>
+        // window.onload
+        // HTMLCollection을 배열로 변환 : [...기존collection객체]
+        window.addEventListener('load', function() {
+            const btns = document.getElementsByClassName("color-btn");
+            // console.dir(btns);
+            for(var i=0; i<btns.length; i++) {
+                btns[i].addEventListener('click', function(e) {
+                    console.dir(e.target);
+                    document.body.bgColor = e.target.dataset['color'];
+                })
+            }
+        });
+    </script>
+</head>
+<body>
+    <h2>색상 변경 버튼들</h2>
+    <button class="color-btn" data-color="red">빨강</button>
+    <button class="color-btn" data-color="green">초록</button>
+    <button class="color-btn" data-color="blue">파랑</button>
+    <button class="color-btn" data-color="yellow">노랑</button>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <!-- 작성자: 김범준, 작성일: 2018-09-21, 연락처: yugsub@nate.com -->
+ <meta charset="UTF-8">
+ <title>Title</title>
+ <style>
+ div.box {
+ width: 100px;
+ height: 100px;
+ background: tomato;
+ position: absolute;
+ left: 100px;
+ top: 100px;
+ }
+ </style>
+ <script>
+ function BoxEvent(elementId, x, y) {
+ this.box = document.getElementById(elementId);
+ this.box.style.left = x + 'px';
+ this.box.style.top = y + 'px';
+
+ this.box.onmousedown = function () {
+ this.xGap = event.clientX - this.offsetLeft;
+ this.yGap = event.clientY - this.offsetTop;
+
+ document.onmouseup = function () {
+ document.onmousemove = null;
+ };
+ var Box = this;
+ document.onmousemove = function (){
+ Box.style.left = event.clientX-Box.xGap + 'px';
+ Box.style.top = event.clientY-Box.yGap + 'px';
+ }
+ }
+ };
+
+ window.onload = function() {
+ new BoxEvent('box0', 100, 100);
+ new BoxEvent('box1', 200, 100);
+ new BoxEvent('box2', 300, 100);
+ new BoxEvent('box3', 400, 100);
+ }
+ </script>
+</head>
+<body>
+
+<div id="box0" class="box">BOX</div>
+<div id="box1" class="box">BOX</div>
+<div id="box2" class="box">BOX</div>
+<div id="box3" class="box">BOX</div>
+
+</body>
+</html></pre>
+<!-- [출처] 자바스크립트 다중 엘리먼트 드래그 예제 소스 (컴스터디21) | 작성자 범준쌤 -->

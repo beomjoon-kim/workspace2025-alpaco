@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div.newBox {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: red;
+        }
+        div#box {
+            left: 300px;
+            top: 300px;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        const LEFT = 'Left';
+        const RIGHT = 'Right';
+        const TOP = 'Top';
+        const BOTTOM = 'Bottom';
+        const WIDTH = 10
+        const HEIGHT = 10;
+        
+        var box;
+        var pointArr = [];
+        var boxArr = [];
+        
+        var x, y;
+        
+        var fn = null;
+        
+        var direction = null;
+        var idx=0;
+        var cnt = 0;
+        var xStep, yStep;
+        var move = function() {
+            fn = setInterval(function() {
+                x = box.offsetLeft;
+                y = box.offsetTop;
+                xStep = 0;
+                yStep = 0;
+                if(direction == LEFT){
+                    xStep = -10;
+                } else if(direction == RIGHT) {
+                    xStep = 10;
+                } else if(direction == TOP) {
+                    yStep = -10;
+                } else if(direction == BOTTOM) {
+                    yStep = 10
+                }
+                
+                cnt++;
+                x += xStep;
+                y += yStep;
+                box.style.left = x + 'px';
+                box.style.top = y + 'px';
+                pointArr.push({x:x, y:y});
+                idx++;
+                var j = pointArr.length - idx;
+                for(var i=0; i<idx; i++) {
+                    boxArr[i].style.left = pointArr[j+i].x+'px';
+                    boxArr[i].style.top = pointArr[j+i].y+'px';
+                    //console.log(i, idx);
+                }
+                if(cnt==10) {
+                    //clearInterval(fn);
+                    cnt = 0;
+                    idx = 0
+                }
+            },100);
+        }
+        
+        var evtHandler = function() {
+            var keyCode = event.keyCode;
+
+            if(keyCode == 37) {
+                direction = LEFT;
+            }
+            if (keyCode == 39) {
+                direction = RIGHT;
+            }
+            if(keyCode == 38) {
+                direction = TOP;
+            }
+            if (keyCode == 40) {
+                direction = BOTTOM;
+            }
+        };
+            
+        var init = function() {
+            box = document.getElementById('box');
+            x = box.offsetLeft;
+            y = box.offsetTop;
+            for(var i=0; i<10; i++){
+                var newBox = document.createElement('div');
+                newBox.className = 'newBox';
+                newBox.style.left = x + 'px';
+                newBox.style.top = y + 'px';
+                boxArr.push(newBox);
+                document.body.appendChild(newBox);
+            }
+        };
+        
+        $(document).ready(function() {
+            init();
+            move();
+            
+            window.addEventListener('keydown', evtHandler);
+
+        });
+    </script>
+</head>
+<body>
+   
+   <div id="box" class="newBox"></div>
+    
+</body>
+</html>

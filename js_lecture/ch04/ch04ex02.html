@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<script>
+
+// 함수 선언
+function do01(name, age, address) {
+    // console.log(name, age, address);
+    // 자바스크립트 함수의 매개변수는 형식적인 매개변수
+    // 실제로는 arguments 객에 담겨온다.
+    // 함수 호출 시 자동 생성된다.
+    // arguments 권장하지 않는다.(브라우저마다 다를 수 있다.)
+    // 프론트엔드개발에서는 크로스체킹 필수.
+    console.dir(arguments[0]);
+}
+
+// 매개변수와 인자의 갯수가 달라도 된다.
+// 기본 다형성 (Python에는 디폴트 매개변수 ...)
+do01();
+do01("kim");
+do01("lee", 24);
+do01("park", 30, "seoul");
+
+</script>
+
+</body>
+</html>

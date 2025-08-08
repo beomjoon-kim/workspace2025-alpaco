@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Click Event Example</title>
+</head>
+<body>
+  <button id="btn-click">Click Me</button>
+  <p id="message"></p>
+
+  <script>
+    // 버튼 클릭 이벤트 처리 함수
+    function handleClick() {
+      const messageElement = document.getElementById("message");
+      messageElement.textContent = "Button clicked!";
+    }
+
+    // 버튼 클릭 이벤트 리스너 등록
+    const buttonElement = document.getElementById("btn-click");
+    buttonElement.addEventListener("click", handleClick);
+    buttonElement.removeEventListener("click", handleClick);
+  </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div#puzzleBox {
+            border: 1px solid black;
+            width: 400px;
+            height: 400px;
+        }
+        div.cell {
+            border: 1px solid red;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            font-size: 24pt;
+            float: left;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>짝맞추기 퍼즐게임</h1>
+    <div id="puzzleBox"></div>
+    <p id="statusBox"></p>
+
+    <script>
+        const puzzleBox = document.querySelector("#puzzleBox");
+        const statusBox = document.querySelector("#statusBox");
+
+        class DivElement {
+            constructor(ch) {
+                let newDiv = document.createElement("div");
+                newDiv.innerHTML = ch;
+                newDiv.dataset['ch'] = ch;
+                newDiv.className = "cell";
+                return newDiv;
+            }
+        }
+
+        function init() {
+            for(var i=0; i<16; i++) {
+                puzzleBox.appendChild(new DivElement(String.fromCharCode(i%8+65)));
+            }
+
+            shuffle(puzzleBox);
+        }
+
+        function shuffle(puzzleBox) {
+            // 1. puzzleBox의 div 셀을 DOM으로 선택
+            // 2. div 리스트의 랜덤한 위치의 엘리먼트를 뽑아서 맨뒤로 추가한다.(appendChild())
+            // 3. Math.random()*16 하면 0~15사이의 number를 랜덤하게 뽑는다.
+            // 4. Math.floor(Math.randomm()*16)을 이용해서 소수점 아래 절삭
+            let cells = puzzleBox.querySelectorAll('div.cell');
+            let count = 0;
+            let refInterval = setInterval(function() {
+                let idx = Math.floor(Math.random()*16);
+                puzzleBox.appendChild(cells[idx]);
+                count += 1;
+                if(count >= 20) {
+                    clearInterval(refInterval);
+                    statusBox.innerHTML = "5초 후에 게임이 시작 됩니다!"
+                    // 5초간 카운트 
+                    countDown();
+                }
+            }, 100);
+        }
+
+        function countDown() {
+            let sec = 5;
+            let ref = setInterval(function() {
+                statusBox.innerHTML = sec + "초 후에 게임이 시작 됩니다!";
+                sec--;
+                if(sec == 0) {
+                    clearInterval(ref);
+                    play();
+                }
+                
+            }, 1000);
+        }
+
+        function play() {
+            statusBox.innerHTML = "Start Game!";
+            let cells = puzzleBox.querySelectorAll('div.cell');
+            cells.forEach(function(cell, i) {
+                cell.innerHTML = "";
+                cell.onclick = function(e) {
+                    e.target.innerHTML = e.target.dataset['ch'];
+                }
+            });
+        }
+
+        init();
+    </script>
+</body>
+</html>

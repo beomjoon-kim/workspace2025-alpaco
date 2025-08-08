@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[type=number] {
+            width: 50px;
+            text-align: right;
+        }
+    </style>
+
+    <script>
+        // window객체가 모두 로드 되면 실행
+        // window.onload = function() {
+        //     const form = document.querySelector("form[name=inputForm]");
+        //     console.log(form);
+        // }
+    </script>
+</head>
+<body>
+    <h2>정수의 크기 판별</h2>
+    <p>정수를 입력하고 Enter를 치면 다음 Input으로 넘어 갑니다.</p>
+    <form name="inputForm">
+        <fieldset>
+            <legend>서로 다른 정수 3개 입력</legend>
+            <input type="number" size="2">
+            <input type="number" size="2">
+            <input type="number" size="2">
+        </fieldset>
+    </form>
+    <br>
+    <div id="box">
+        결과 - 큰수:0, 중간수:0, 작은수:0
+    </div>
+
+
+    <script>
+        const form = document.querySelector("form[name=inputForm]");
+        // NodeList 타입을 Array타입으로 변환 : 더 많은 Array기능 사용 가능.
+        const formList = [...form.querySelectorAll("input")];
+        const numbers = [];
+        formList.forEach(function(item, index) {
+            item.onkeyup = function(e) {
+                if(e.keyCode === 13) {
+                    numbers.push( Number(e.target.value) );
+                    try {
+                        this.nextElementSibling.focus();
+                    } catch {
+                        console.log("계산하기");
+                        compare(numbers);
+                    }
+                }
+            }
+        });
+
+        function compare(numbers) {
+            let max = 0;
+            let mid = 0;
+            let min = 0;
+
+            if(numbers[0] > numbers[1]) {
+                max = numbers[0];
+                min = numbers[1];
+            } else {
+                max = numbers[1];
+                min = numbers[0];
+            }
+
+            if(max < numbers[2]) {
+                mid = max;
+                max = numbers[2];
+            } else if(min > numbers[2]) {
+                mid = min;
+                min = numbers[2];
+            } else {
+                mid = numbers[2];
+            }
+
+            document.querySelector("#box").innerHTML = `결과 - 큰수:${max}, 중간수:${mid}, 작은수:${min}`;
+        }
+        
+    </script>
+</body>
+</html>

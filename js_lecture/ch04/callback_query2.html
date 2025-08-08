@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">클릭 버튼</button>
+    <ul class="btns">
+        <li>선택1</li>
+        <li>선택2</li>
+        <li>선택3</li>
+    </ul>
+
+    <script>
+        function myQuery(selector) {
+            let doms = document.querySelectorAll(selector);
+            // doms는 NodeList이다.
+            // doms.forEach()를 활용해서 반복해서 이벤트 핸들러 적용 하기
+            doms.click = function(callback) {
+                console.log('dom.click 함수 호출', doms)
+                doms.forEach(function(dom) {
+                    dom.onclick = callback;
+                });
+
+                return doms;
+            }
+
+            doms.css = function(attr, value) {
+                doms.forEach(function(dom) {
+                    dom.style[attr] = value;
+                });
+                return doms;
+            }
+
+            doms.color = function(value) {
+                doms.forEach(function(dom) {
+                    dom.style.color = value;
+                });
+                return doms;
+            }
+
+            return doms;
+        }
+
+        // myQuery함수의 식별자를 하나 더 만든다.
+        var $ = myQuery;
+
+        // var btn = $('#btn');
+        // btn.onclick = function() {
+        //     console.log("버튼을 클릭했다.1");
+        // }
+        // console.dir(btn);
+        
+        // $('#btn').onclick = function() {
+        //     console.log("버튼을 클릭했다.2");
+        // }
+
+        $('#btn').click(function() {
+            console.log("버튼을 클릭했다.3");
+        }).color('red');
+
+        $('.btns li').click(function() {
+            console.log("li버튼 클릭: ", this.innerText);
+        }).css('backgroundColor', 'yellow').color('red');
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.gameArea {
+            border: 1px solid gray;
+            width: 306px;
+            height: 306px;
+        }
+        div.game {
+            border: 1px solid navy;
+            height: 100px;
+            width: 100px;
+            overflow: hidden;
+            float: left;
+        }
+        div.box {
+            border: 0px solid navy;
+            width: 100px;
+        }
+        div.cell {
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+            border: 1px solid orange;
+            font-size: 24pt;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>슬롯머신(햄버거하우스) 게임</h1>
+    <div class="gameArea"></div>
+    <button class="startBtn">START!</button> <button class="stopBtn">STOP!</button>
+
+    <script>
+        class Slot {
+            constructor(selector) { 
+                this.target = null;
+                this.game = document.createElement("div");
+                this.game.className = "game";
+                this.game.style.position = "relative";
+                this.box = document.createElement("div");
+                this.box.style.position = "absolute";
+                this.box.className = 'box';
+                for(var i=0; i<11; i++) {
+                    let cell = document.createElement("div");
+                    cell.innerHTML = i==10?1:i+1;
+                    cell.className = 'cell';
+                    this.box.appendChild(cell);
+                }
+                this.game.appendChild(this.box);
+                document.querySelector(selector).appendChild(this.game);
+            }
+
+            play() {
+                // 내부의 cell들이 위로 이동하도록 한다. (box가 위로 애니메이션)
+                let y = 0;
+                let speed = -10;
+                this.cnt = 0
+                this.ref = setInterval( () => {
+                    y += speed;
+                    this.cnt += speed;
+                    this.box.style.top = y + 'px';
+                    if(y <= -1000) {
+                        y = 0;
+                    } 
+                    console.dir(this.target);
+                    if(this.target != null && this.cnt == -(this.target)*100) {
+                        clearInterval(this.ref);
+                    }
+                }, Math.floor(1000/60));
+
+                return this; // 메서드 체인 기법
+            }
+
+            stop() {
+                // 객체 하나를 멈춘다. 
+                // taget을 만들어 주면 된다.
+                let seed = 5 + Math.floor( Math.random() * 5 );
+                this.target = Math.floor( seed + (Math.abs(this.cnt)) / 100 );
+            }
+        } // end of Slot class
+
+        // 슬롯머신 셀 생성
+        let slotArr = [];
+        for(var i=0; i<9; i++) {
+            let target = Math.floor( 10 + Math.random() * 20 );
+            slotArr.push(new Slot('div.gameArea').play(target) );
+        }
+        
+        // 멈춤버튼 이벤트 핸들러
+        document.querySelector('button.stopBtn').onclick = function () {
+            // 멈춤.
+            slotArr.forEach(function(slot) {
+                slot.stop();
+                
+            })
+        }
+    </script>
+</body>
+</html>

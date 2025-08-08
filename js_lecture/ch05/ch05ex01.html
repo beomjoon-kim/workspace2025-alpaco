@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script> -->
+    <script>
+    // 클로서 활용
+    var aaaRef = (function() {
+        console.log('호출하지 않아도 스스로 실행 하는 함수');
+        var cnt = 0;
+        return function aaa(value) {
+            if(value) {
+                cnt = value;
+            }
+            console.log('aaa 함수 호출!', cnt++);
+        }
+    })();
+
+    aaaRef(101);
+    aaaRef();
+    aaaRef();
+    aaaRef();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>구구단</h1>
+    시작단: <input type="text" id="startDan" value="2"><br>
+    종료단: <input type="text" id="endDan" value="9"><br>
+    <button id="okBtn">확인</button>
+    <hr>
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById("box");
+        var okBtn = document.getElementById("okBtn");
+        var startDan = document.getElementById("startDan");
+        var endDan = document.getElementById("endDan");
+        /*
+        for(초기값; 조건; 증감식) {
+            실행문;
+        }
+        */
+
+        okBtn.onclick = function(e) {
+            let startDanNum = Number(startDan.value);
+            let endDanNum = Number(endDan.value);
+
+            //(startDanNum, endDanNum) = (endDanNum, startDanNum)
+            if(startDanNum > endDanNum) {
+                let tmpDanNum = startDanNum;
+                startDanNum = endDanNum
+                endDanNum = tmpDanNum;
+            }
+
+            var html = "";
+            var tapSize = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            
+            html += "<br>"
+            for(var dan = startDanNum; dan<=endDanNum; dan+=3) {
+                for(var i=0; i<3 && (dan+i <= endDanNum); i++) {
+                    html += `[ ${dan+i}단 ]` + tapSize;
+                }
+                html += "<br>";
+                for(var cnt=1; cnt<=9; cnt++) {
+                    for(var i=0; i<3 && (dan+i <= endDanNum); i++) {
+                        html += `${dan+i}*${cnt}=${(dan+i)*cnt}` + tapSize;
+                    }
+                    html += "<br>"
+                }
+                html += "<br>";
+            }
+
+            box.innerHTML = html;
+        }
+
+        
+    </script>
+</body>
+</html>

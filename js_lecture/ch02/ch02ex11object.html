@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>객체 활용</h1>
+    <ul id="menu">
+        <li>오징어</li>
+        <li>꼴뚜기</li>
+        <li>대구</li>
+        <li>명태</li>
+        <li>거북이</li>
+    </ul>
+
+    <script>
+        let colors =  ['red','green','blue','orange','yellow'];
+        // let lis = document.getElementById('menu').querySelectorAll('li');
+        let ulTag = document.getElementById('menu');
+        let lis = ulTag.querySelectorAll('li');
+        // NodeList 타입: forEach, entries, keys, values ...
+        // console.dir(lis);
+
+        for(var i=0; i<lis.length; i++) {
+            //console.log(i);
+            // i는 화면이 그려질때 이미 모두 증가 하였다.
+            // 이벤트 핸들러에서 사용할 i값을 어딘가에 저장 해야 한다.
+            // 이벤트 핸들러를 사용할 해당 요소에 저장한다.
+            lis[i].no = i;
+            lis[i].onclick = function() {
+                // li클릭하면 li의 순서대로 colors의 색상을 document.body의 bgColor에 적용 하기.
+                // console.dir(document.body);
+                // function으로 이벤트 핸들러 만들면 this는 이벤트 발행한 요소다.
+                console.dir(this);
+                // console.log(i);
+                document.body.bgColor = colors[this.no];
+            }
+        }
+    </script>
+</body>
+</html>
