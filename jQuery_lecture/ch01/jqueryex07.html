@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery Effect Methods Example</title>
+  <!-- jQuery 라이브러리 로드 -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>jQuery Effect Methods Example</h2>
+  <button id="fadeInButton">Fade In</button>
+  <button id="fadeOutButton">Fade Out</button>
+  <button id="slideDownButton">Slide Down</button>
+  <button id="slideUpButton">Slide Up</button>
+  <div class="box" style="display: none; width: 100px; height: 100px; background-color: red;"></div>
+
+  <script>
+    $(document).ready(function() {
+      // fadeIn() 메서드를 이용하여 요소를 서서히 나타나게 함
+      $('#fadeInButton').click(function() {
+        $('.box').fadeIn(1000); // 1초 동안 서서히 나타남
+      });
+
+      // fadeOut() 메서드를 이용하여 요소를 서서히 사라지게 함
+      $('#fadeOutButton').click(function() {
+        $('.box').fadeOut(1000); // 1초 동안 서서히 사라짐
+      });
+
+      // slideDown() 메서드를 이용하여 요소를 슬라이드 다운
+      $('#slideDownButton').click(function() {
+        $('.box').slideDown(1000); // 1초 동안 슬라이드 다운
+      });
+
+      // slideUp() 메서드를 이용하여 요소를 슬라이드 업
+      $('#slideUpButton').click(function() {
+        $('.box').slideUp(1000); // 1초 동안 슬라이드 업
+      });
+    });
+  </script>
+</body>
+</html>

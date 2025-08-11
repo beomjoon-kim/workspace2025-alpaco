@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom jQuery Plugin Example</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Custom jQuery Plugin Example</h2>
+  <p>This is a paragraph with some text.</p>
+	<p>This is a paragraph with some text.</p>
+  <button id="btn">Highlight</button>
+
+  <script>
+    // 사용자 정의 플러그인 "highlight" 추가
+    $.fn.myFn= function() {
+      this.each(function() {
+        $(this).css({
+	        backgroundColor: 'yellow',
+	        fontWeight: 'bold'
+	      });
+      });
+    };
+
+    // 버튼 클릭 시 플러그인 호출
+    $(document).ready(function() {
+      $('#btn').click(function() {
+        $('p').myFn();
+      });
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery animate() Method Example</title>
+  <!-- jQuery 라이브러리 로드 -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>jQuery animate() Method Example</h2>
+  <button id="animateButton">Animate</button>
+  <div class="box" style="width: 100px; height: 100px; background-color: red;"></div>
+
+  <script>
+    $(document).ready(function() {
+      // animate() 메서드를 이용하여 요소에 애니메이션 적용
+      $('#animateButton').click(function() {
+        $('.box').animate({
+          width: '200px',    // 너비를 200px로 변경
+          height: '200px',   // 높이를 200px로 변경
+          opacity: '0.5',    // 투명도를 0.5로 변경
+          left: '200px'      // 왼쪽으로 200px 이동
+        }, 1000); // 1초 동안 애니메이션 적용
+      });
+    });
+  </script>
+</body>
+</html>

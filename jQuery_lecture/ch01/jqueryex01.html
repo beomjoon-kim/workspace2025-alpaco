@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        li.redColor {
+            color: red;
+            text-decoration: underline;
+            font-size: 24pt;
+            font-weight: 900;
+            background-color: aqua;
+        }
+    </style>
+    <!-- jQuery 라이브러리를 프로젝트 내부에 저장 -->
+    <script src="js/jquery.js"></script>
+    <script>
+        // 바닐라 자바스크립트의 window.onload와 동일
+        $(document).ready(function(e) {
+            // alert('hello world!');
+        });
+
+        // 위와 동일한 문장
+        $(function(e) {
+            // tranKorBtn을 클릭하면 제목을 한글로 변경
+            $('#transKorBtn').click(function(e) {
+                $('h1.headding').html('길동이의 홈페이지');
+            });
+
+            $('#toggleTodoList').click(function() {
+                $('.todoList').toggle('slow');
+            });
+
+            $('.todoTitle').change(function(event) {
+                // event.target.value;
+                //console.log( $(event.target).val() );
+                let message = $(event.target).val();
+                // 문자열을 그냥 append 하면 DOM으로 사용 가능.
+                $('.todoList').append(`<li>${message}</li>`);
+                // input을 비우고 focus 유지
+                $('.todoTitle').val('').focus();
+            });
+
+            // 스타일 클래스 적용
+            // 클래스 적용 메서드 연습
+            $('#addClassBtn').click(function(event) {
+                $('.todoList li').addClass('redColor');
+            });
+            $('#removeClassBtn').click(function(event) {
+                $('.todoList li').removeClass('redColor');
+            });
+            $('#toggleClassBtn').click(function(event) {
+                $('.todoList li').toggleClass('redColor');
+            });
+        });
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1 class="headding">Hello world</h1>
+        <div class="navi">Home | Profile | Gallery</div>
+    </div>
+    <hr /> 
+    <div>
+        <button id="transKorBtn">제목 한글로 변경</button>
+        <button id="toggleTodoList">목록 토글</button>
+        <hr>
+        <button id="addClassBtn">클래스 적용</button>
+        <button id="removeClassBtn">클래스 제거</button>
+        <button id="toggleClassBtn">토글 클래스</button>
+    </div>
+    <hr />
+    <div>
+        <p>할일을 입력하고 '엔터'키를 치세요.</p>
+        할일: <input type="text" class="todoTitle">
+        <ul class="todoList" >
+            <li>코딩 하기</li>
+            <li>청소 하기</li>
+            <li>밥 하기</li>
+        </ul>
+    </div>
+</body>
+</html>
