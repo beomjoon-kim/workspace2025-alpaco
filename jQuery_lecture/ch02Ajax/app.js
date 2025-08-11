@@ -8,7 +8,7 @@ app.use(express.static('public'));
 
 app.get('/hello', (req, res) => {
     res.end('<h1>Hello world</h1>');
-}); 
+});
 
 // http와 express 함께 사용.
 const server = http.createServer(app);

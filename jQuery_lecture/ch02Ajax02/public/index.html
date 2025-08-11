@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to Nodejs Express Homepage</h1>
+    <button id="loadBtn">불러오기</button>
+    <div id="result">내용 불러 오는 부분...</div>
+
+    <script>
+        function myAjax(targetUrl, callback) {
+            const xhr = new XMLHttpRequest();
+            console.dir(xhr);
+            // 요청 결과가 돌아 오면 콜백함수가 실행 한다.
+            xhr.onload = function(e) {
+                //console.log(e.target == xhr);
+                let restxt = e.target.responseText;
+                let resObj = JSON.parse(e.target.responseText);
+                console.log(resObj.user);
+                console.log(resObj.message);
+                console.log(resObj.date);
+
+                callback(restxt);
+            }
+            // 비동기로 어떤 페이지를 요청 할지 정한다.
+            xhr.open('GET', targetUrl, true);
+            // open에 장착한 페이지를 실행하라.
+            xhr.send();
+        }
+
+        document.querySelector('#loadBtn').onclick = function() {
+            myAjax('/data?user=hong&message=love', function(restxt) {
+                document.querySelector('#result').innerHTML = restxt;
+            });
+        };
+    </script>
+</body>
+</html>
