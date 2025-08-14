@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .isDone {
+            text-decoration: line-through;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<%- include('inc/Top.ejs') %>  
+<hr>
+    <h2>Todo List</h2>
+    <table width="550" border="1">
+        <tr>
+            <th>No</th>
+            <th>Done</th>
+            <th>Title</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    <%
+        todoList.forEach((item, i)=> {
+    %>
+        <tr>
+            <td><%= i%></td>
+            <td><input type="checkbox" name="" id="" <%= item.done ? "checked": ""%>></td>
+            <td><a href="/todo/detail?_id=<%=item._id %>" class="<%= item.done ? "isDone": ""%>"><%= item.title %></a></td>
+            <td><a href="/todo/modify?_id=<%=item._id %>">Edit</a></td>
+            <td><a href="/todo/delete?_id=<%=item._id %>">Delete</a></td>
+        </tr>
+    <%
+        })
+    %>
+        
+    </table>
+    <a href="">새 할일</a>
+<hr>
+<%- include('inc/Bottom.ejs') %>
+</body>
+</html>

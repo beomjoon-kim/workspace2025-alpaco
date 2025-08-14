@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<%- include('inc/Top.ejs') %>  
+<hr>
+    <h2>Todo Detail</h2>
+<form action="/todo/modify" method="post">
+            <input type="hidden" value="<%= todo._id %>" />
+            <table>
+                <tr>
+                    <td>할일: </td>
+                    <td><input type="text" name="title" value="<%= todo.title %>"/></td>
+                </tr>
+                <tr>
+                    <td>확인: </td>
+                    <td><select name="done">
+                    <% if(todo.done) { %>
+                        <option value="false">미완료</option>
+                        <option value="true" selected>완료</option>
+                    <% } else { %>
+                        <option value="false" selected>미완료</option>
+                        <option value="true">완료</option>
+                    <% } %>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="저장" />
+                    </td>
+                </tr>
+            </table>
+</form>
+
+<hr>
+<%- include('inc/Bottom.ejs') %>
+</body>
+</html>
