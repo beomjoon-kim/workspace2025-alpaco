@@ -9,6 +9,20 @@
 <%- include('inc/Top.ejs') %>  
 <hr>
     <h2>Todo Detail</h2>
+    <table>
+        <tr>
+            <th>ObjectId</th>
+            <td><%= todo._id %></td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td><%= todo.title %></td>
+        </tr>
+        <tr>
+            <th>Done</th>
+            <td><%= todo.done %></td>
+        </tr>
+    </table>
 <hr>
 <%- include('inc/Bottom.ejs') %>
 </body>

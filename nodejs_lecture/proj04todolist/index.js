@@ -7,7 +7,7 @@ const { ObjectId, MongoClient } = require('mongodb');
 
 // MongoDB 연결 문자열
 const uri = "mongodb://localhost:27017";
-const client = new MongoClient(uri);
+const client = new MongoClient(uri, { useUnifiedTopology: true });
 const dbName = "local";
 const collectionName = "todolist"
 
@@ -16,6 +16,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
 
 app.get('/home', (req, res) => {
     // res.end("<h1>Hello world</h1>");
@@ -59,14 +61,11 @@ app.get('/todos', (req, res) => {
 app.get("/todo/input", (req,res)=>{
     res.render("todoInput", {});
 });
-app.get("/todo/detail", (req,res)=>{
-    res.render("todoDetail", {});
-});
 
 app.get("/todo/list", async (req,res)=>{
     // 몽고디비에서 데이터 가져오기
     try {
-        await client.connect();
+        
         const database = client.db(dbName);
         const todoCollection = database.collection(collectionName);
         const QUERY = {};
@@ -82,8 +81,9 @@ app.get("/todo/list", async (req,res)=>{
             if(err) throw err;
             res.end(html);
         });
-      } finally {
-        await client.close();
+      } 
+      finally {
+        // await client.close();
       }
 });
 
@@ -95,7 +95,7 @@ app.get("/todo/detail", async (req,res)=>{
     // };
     console.log(req.query._id);
     try {
-        await client.connect();
+        // await client.connect();
         const database = client.db(dbName);
         const todoCollection = database.collection(collectionName);
         const QUERY = {_id: new ObjectId(req.query._id) };
@@ -106,7 +106,7 @@ app.get("/todo/detail", async (req,res)=>{
             res.end(html);
         });
       } finally {
-        await client.close();
+        // await client.close();
       }
 });
 
@@ -118,7 +118,7 @@ app.get("/todo/modify", async (req,res)=>{
     // };
     console.log(req.query._id);
     try {
-        await client.connect();
+        // await client.connect();
         const database = client.db(dbName);
         const todoCollection = database.collection(collectionName);
         const QUERY = {_id: new ObjectId(req.query._id) };
@@ -128,15 +128,16 @@ app.get("/todo/modify", async (req,res)=>{
             if(err) throw err;
             res.end(html);
         });
-      } finally {
-        await client.close();
+      } 
+      finally {
+        //await client.close();
       }
 });
 
 app.post("/todo/modify", async (req,res)=>{
     console.log(req.body._id);
     try {
-        await client.connect();
+        // await client.connect();
         const database = client.db(dbName);
         const movies = database.collection(collectionName);
         const filter = { _id: new ObjectId(req.body._id) };
@@ -149,10 +150,13 @@ app.post("/todo/modify", async (req,res)=>{
         };// Update the first document that matches the filter
         const result = await movies.updateOne(filter, updateDoc, options);
         console.log(`${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,);
-    } finally {
-        await client.close();
+    
+        res.redirect("/todo/list");
+    } 
+    finally {
+        // await client.close();
     }
-    res.redirect("/todo/list");
+    
 });
 
 app.get("/todo/delete", async (req,res)=>{
@@ -167,14 +171,19 @@ app.get("/todo/delete", async (req,res)=>{
         } else {
           console.log("No documents matched the query. Deleted 0 documents.");
         }
-      } finally {
+        res.redirect("/todo/list");
+      } 
+      finally {
         // Close the connection after the operation completes
-        await client.close();
+        // await client.close();
       }
-    res.redirect("/todo/list");
+    
 });
 
 const server = http.createServer(app);
 server.listen(app.get('PORT'), () => {
-    console.log(`Run on server: http://localhost:${app.get('PORT')}`)
+    console.log(`Run on server: http://localhost:${app.get('PORT')}`);
+
+    // 프로세스 실행 시 1회
+    client.connect();
 });
