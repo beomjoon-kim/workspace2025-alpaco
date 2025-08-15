@@ -1,3 +1,4 @@
+<!-- views/todoDetail.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +24,10 @@
             <td><%= todo.done %></td>
         </tr>
     </table>
+    <p>
+        <a href="/todo/list">목록</a> | <a href="/todo/modify?_id=<%= todo._id %>">수정</a> | 
+        <a href="/todo/delete?_id=<%= todo._id %>">삭제</a>
+    </p>
 <hr>
 <%- include('inc/Bottom.ejs') %>
 </body>

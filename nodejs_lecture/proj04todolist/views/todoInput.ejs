@@ -9,6 +9,24 @@
 <%- include('inc/Top.ejs') %>  
 <hr>
     <h2>Todo Input</h2>
+    <!-- views/todoInput.ejs -->
+    <form action="/todo/input" method="post">
+    <table>
+        <tr>
+        <td>할일: </td>
+        <td><input type="text" name="title" value="새 할일"/></td>
+        </tr>
+        <tr>
+        <td>확인: </td>
+        <td><select name="done">
+            <option value="false" selected>미완료</option>
+            <option value="true">완료</option>
+        </select></td>
+        </tr><tr>
+        <td colspan="2"><input type="submit" value="저장" /></td>
+        </tr>
+    </table>
+    </form>
 <hr>
 <%- include('inc/Bottom.ejs') %>
 </body>
